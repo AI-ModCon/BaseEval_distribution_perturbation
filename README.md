@@ -1,5 +1,8 @@
 # distribution_perturbation
 
+This repo contains work on a service that provides **first order** distribution perturbation as a service. Also provides an example on **second order** distribution perturbation using a benchmark from a model seed team.
+
+Terms first/second order are WIP
 
 
 ## Getting started
