@@ -1,0 +1,1 @@
+The connected submodule contains steps to setup your custom benchmark if you have prompt variations in nemo skills and then run a sensitivity analysis.
