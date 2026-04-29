@@ -1,0 +1,6 @@
+dist_pert_env/
+weather_example_test/aug.py
+weather_example_test/data/tasks.jsonl
+weather_example_test/output/tasks_aug_p0_1.jsonl
+weather_example_test/output/tasks_aug_p0_2.jsonl
+weather_example_test/output/tasks_aug_p0_3.jsonl
