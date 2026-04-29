@@ -1,96 +1,96 @@
 # distribution_perturbation
 
-This repo contains work on a service that provides **first order** distribution perturbation as a service. Also provides an example on **second order** distribution perturbation using a benchmark from a model seed team.
+A library for **first-order distribution perturbation** of text, image, and numeric data, with examples of **second-order perturbation** (perturbing a precursor to produce perturbed input data).
 
-Terms first/second order are WIP
+- **First-order**: perturbations applied directly to input data (e.g. word replacement, pixel noise, additive Gaussian)
+- **Second-order**: perturbations applied to a data source or generation process, producing perturbed datasets (e.g. augmented benchmark variants for robustness evaluation)
 
-
-## Getting started
-
-To make it easy for you to get started with GitLab, here's a list of recommended next steps.
-
-Already a pro? Just edit this README.md and make it your own. Want to make it easy? [Use the template at the bottom](#editing-this-readme)!
-
-## Add your files
-
-* [Create](https://docs.gitlab.com/user/project/repository/web_editor/#create-a-file) or [upload](https://docs.gitlab.com/user/project/repository/web_editor/#upload-a-file) files
-* [Add files using the command line](https://docs.gitlab.com/topics/git/add_files/#add-files-to-a-git-repository) or push an existing Git repository with the following command:
-
-```
-cd existing_repo
-git remote add origin https://gitlab.osti.gov/modcon-base/base-eval/distribution_perturbation.git
-git branch -M main
-git push -uf origin main
-```
-
-## Integrate with your tools
-
-* [Set up project integrations](https://gitlab.osti.gov/modcon-base/base-eval/distribution_perturbation/-/settings/integrations)
-
-## Collaborate with your team
-
-* [Invite team members and collaborators](https://docs.gitlab.com/user/project/members/)
-* [Create a new merge request](https://docs.gitlab.com/user/project/merge_requests/creating_merge_requests/)
-* [Automatically close issues from merge requests](https://docs.gitlab.com/user/project/issues/managing_issues/#closing-issues-automatically)
-* [Enable merge request approvals](https://docs.gitlab.com/user/project/merge_requests/approvals/)
-* [Set auto-merge](https://docs.gitlab.com/user/project/merge_requests/auto_merge/)
-
-## Test and Deploy
-
-Use the built-in continuous integration in GitLab.
-
-* [Get started with GitLab CI/CD](https://docs.gitlab.com/ci/quick_start/)
-* [Analyze your code for known vulnerabilities with Static Application Security Testing (SAST)](https://docs.gitlab.com/user/application_security/sast/)
-* [Deploy to Kubernetes, Amazon EC2, or Amazon ECS using Auto Deploy](https://docs.gitlab.com/topics/autodevops/requirements/)
-* [Use pull-based deployments for improved Kubernetes management](https://docs.gitlab.com/user/clusters/agent/)
-* [Set up protected environments](https://docs.gitlab.com/ci/environments/protected_environments/)
-
-***
-
-# Editing this README
-
-When you're ready to make this README your own, just edit this file and use the handy template below (or feel free to structure it however you want - this is just a starting point!). Thanks to [makeareadme.com](https://www.makeareadme.com/) for this template.
-
-## Suggestions for a good README
-
-Every project is different, so consider which of these sections apply to yours. The sections used in the template are suggestions for most open source projects. Also keep in mind that while a README can be too long and detailed, too long is better than too short. If you think your README is too long, consider utilizing another form of documentation rather than cutting out information.
-
-## Name
-Choose a self-explaining name for your project.
-
-## Description
-Let people know what your project can do specifically. Provide context and add a link to any reference visitors might be unfamiliar with. A list of Features or a Background subsection can also be added here. If there are alternatives to your project, this is a good place to list differentiating factors.
-
-## Badges
-On some READMEs, you may see small images that convey metadata, such as whether or not all the tests are passing for the project. You can use Shields to add some to your README. Many services also have instructions for adding a badge.
-
-## Visuals
-Depending on what you are making, it can be a good idea to include screenshots or even a video (you'll frequently see GIFs rather than actual videos). Tools like ttygif can help, but check out Asciinema for a more sophisticated method.
+> Note: the first/second-order terminology is still being refined.
 
 ## Installation
-Within a particular ecosystem, there may be a common way of installing things, such as using Yarn, NuGet, or Homebrew. However, consider the possibility that whoever is reading your README is a novice and would like more guidance. Listing specific steps helps remove ambiguity and gets people to using your project as quickly as possible. If it only runs in a specific context like a particular programming language version or operating system or has dependencies that have to be installed manually, also add a Requirements subsection.
 
-## Usage
-Use examples liberally, and show the expected output if you can. It's helpful to have inline the smallest example of usage that you can demonstrate, while providing links to more sophisticated examples if they are too long to reasonably include in the README.
+```bash
+git clone <repo-url>
+cd distribution_perturbation
+git submodule update --init --recursive
 
-## Support
-Tell people where they can go to for help. It can be any combination of an issue tracker, a chat room, an email address, etc.
+pip install -e .            # core library (text + numeric)
+pip install -e ".[image]"   # adds image perturbers (Pillow, scipy, imagecorruptions)
+```
 
-## Roadmap
-If you have ideas for releases in the future, it is a good idea to list them in the README.
+For the NeMo Skills example only:
+```bash
+pip install -e /path/to/perlmutter_nemo-skills-main
+pip install -e examples/perlmutter_nemo_skills/nemo-custom-benchmark
+```
 
-## Contributing
-State if you are open to contributions and what your requirements are for accepting them.
+A pinned `requirements.txt` is also provided:
+```bash
+pip install -r requirements.txt
+```
 
-For people who want to make changes to your project, it's helpful to have some documentation on how to get started. Perhaps there is a script that they should run or some environment variables that they need to set. Make these steps explicit. These instructions could also be useful to your future self.
+## Notebook
 
-You can also document commands to lint the code or run tests. These steps help to ensure high code quality and reduce the likelihood that the changes inadvertently break something. Having instructions for running tests is especially helpful if it requires external setup, such as starting a Selenium server for testing in a browser.
+`notebooks/dist_pert_usage.ipynb` contains runnable examples for all three data types. To use it, register the environment as a Jupyter kernel:
 
-## Authors and acknowledgment
-Show your appreciation to those who have contributed to the project.
+```bash
+pip install ipykernel
+python -m ipykernel install --user --name dist_pert_env --display-name "dist_pert_env"
+jupyter lab
+```
 
-## License
-For open source projects, say how it is licensed.
+## Python API
 
-## Project status
-If you have run out of energy or time for your project, put a note at the top of the README saying that development has slowed down or stopped completely. Someone may choose to fork your project or volunteer to step in as a maintainer or owner, allowing your project to keep going. You can also make an explicit request for maintainers.
+All perturbers share the same interface: instantiate with config, then call on a `list`.
+
+```python
+from dist_pert.text import ContextualWordPerturber
+from dist_pert.image import GaussianNoisePerturber, SaltPepperPerturber, ImageCorruptionPerturber
+from dist_pert.numeric import AdditiveGaussianPerturber, MultiplicativeNoisePerturber
+import numpy as np
+
+# Text — replaces tokens with contextually similar alternatives (BERT)
+t = ContextualWordPerturber(aug_p=0.2)
+result = t(["The storm produced rotating columns of air."])
+
+# Image — pixel noise
+img = GaussianNoisePerturber(sigma=25)
+noisy = img([np.zeros((224, 224, 3), dtype=np.uint8)])
+
+# Image — ImageNet-C style corruptions (gaussian_blur, jpeg_compression, shot_noise, brightness, contrast)
+corr = ImageCorruptionPerturber(corruption="gaussian_blur", severity=3)
+corrupted = corr([np.zeros((224, 224, 3), dtype=np.uint8)])
+
+# Numeric
+num = AdditiveGaussianPerturber(sigma=0.5)
+perturbed = num([np.array([1.0, 2.0, 3.0])])
+```
+
+## CLI
+
+```bash
+dist-perturb \
+  --input data/tasks.jsonl \
+  --config perturbation.yaml \
+  --field question \
+  --output output/aug.jsonl
+```
+
+Config YAML format:
+```yaml
+type: text.contextual_word.ContextualWordPerturber
+aug_p: 0.1
+model_path: google-bert/bert-base-cased
+model_type: bert
+```
+
+## Second-Order Example: Weather Benchmark Robustness
+
+`weather_example_test/aug.py` demonstrates second-order perturbation: the input data is a weather Q&A benchmark, and the script uses `ContextualWordPerturber` to generate three paraphrased variants at increasing perturbation levels. These variants are then used with NeMo Skills to measure how model accuracy shifts with question wording.
+
+```bash
+cd weather_example_test
+python aug.py  # writes output/tasks_aug_p0_{1,2,3}.jsonl
+```
+
+The augmented datasets live in `examples/perlmutter_nemo_skills/nemo-custom-benchmark/` as registered NeMo Skills benchmarks. See that directory's `README.md` and `ROBUSTNESS_EVAL.md` for full Perlmutter setup and evaluation commands.

@@ -1,0 +1,11 @@
+nlpaug>=1.1.11
+transformers>=4.0
+torch>=2.0
+typer>=0.9
+pyyaml>=6.0
+numpy>=1.24
+
+[image]
+Pillow>=9.0
+scipy>=1.10
+imagecorruptions>=1.1

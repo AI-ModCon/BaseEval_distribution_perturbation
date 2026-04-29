@@ -1,0 +1,14 @@
+Metadata-Version: 2.4
+Name: dist-pert
+Version: 0.1.0
+Requires-Python: >=3.10
+Requires-Dist: nlpaug>=1.1.11
+Requires-Dist: transformers>=4.0
+Requires-Dist: torch>=2.0
+Requires-Dist: typer>=0.9
+Requires-Dist: pyyaml>=6.0
+Requires-Dist: numpy>=1.24
+Provides-Extra: image
+Requires-Dist: Pillow>=9.0; extra == "image"
+Requires-Dist: scipy>=1.10; extra == "image"
+Requires-Dist: imagecorruptions>=1.1; extra == "image"

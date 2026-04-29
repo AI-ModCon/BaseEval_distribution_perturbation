@@ -1,0 +1,2 @@
+[console_scripts]
+dist-perturb = dist_pert.cli:app
