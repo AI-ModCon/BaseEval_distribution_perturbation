@@ -84,13 +84,4 @@ model_path: google-bert/bert-base-cased
 model_type: bert
 ```
 
-## Second-Order Example: Weather Benchmark Robustness
-
-`weather_example_test/aug.py` demonstrates second-order perturbation: the input data is a weather Q&A benchmark, and the script uses `ContextualWordPerturber` to generate three paraphrased variants at increasing perturbation levels. These variants are then used with NeMo Skills to measure how model accuracy shifts with question wording.
-
-```bash
-cd weather_example_test
-python aug.py  # writes output/tasks_aug_p0_{1,2,3}.jsonl
-```
-
-The augmented datasets live in `examples/perlmutter_nemo_skills/nemo-custom-benchmark/` as registered NeMo Skills benchmarks. See that directory's `README.md` and `ROBUSTNESS_EVAL.md` for full Perlmutter setup and evaluation commands.
+## Second-Order Example: TBD
