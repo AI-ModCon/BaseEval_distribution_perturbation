@@ -11,7 +11,7 @@ try:
     from imagecorruptions import corrupt as _ic_corrupt
 
     _IMAGECORRUPTIONS_AVAILABLE = True
-except ImportError:
+except Exception:
     _IMAGECORRUPTIONS_AVAILABLE = False
 
 try:
