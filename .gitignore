@@ -6,3 +6,5 @@ weather_example_test/output/tasks_aug_p0_2.jsonl
 weather_example_test/output/tasks_aug_p0_3.jsonl
 CLAUDE.md
 IMPLEMENTATION_PLAN.md
+examples/coherent_scattering_example/data/
+examples/coherent_scattering_example/paper.pdf

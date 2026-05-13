@@ -2,3 +2,6 @@
 	path = examples/perlmutter_nemo_skills/nemo-custom-benchmark
 	url = https://gitlab.osti.gov/modcon-base/base-eval/nemo-custom-benchmark.git
 	branch = robustness_evaluation
+[submodule "examples/coherent_scattering_example/dynamiCXS"]
+	path = examples/coherent_scattering_example/dynamiCXS
+	url = git@github.com:ninarina12/dynamiCXS.git
