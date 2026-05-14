@@ -15,7 +15,7 @@ The experimental dataset for the ptychographic scan example is in `data/` (sourc
 ---
 
 ## Data Files (`data/`)
-
+Available [here](https://zenodo.org/records/10204977)
 The three synthetic case studies (Kuramoto, Swarm, Lotka-Volterra) generate all data at runtime. Only the experimental ptychographic scan notebook (`trajectory.ipynb`) uses the files below.
 
 The directory has two subdirectories:
