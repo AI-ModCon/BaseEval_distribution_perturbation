@@ -8,3 +8,4 @@ CLAUDE.md
 IMPLEMENTATION_PLAN.md
 examples/coherent_scattering_example/data/
 examples/coherent_scattering_example/paper.pdf
+examples/*/env/

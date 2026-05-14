@@ -273,13 +273,36 @@ positions_perturbed = np.stack([perturber([positions[:, i]])[0] for i in range(2
 
 ## Installation
 
-```bash
-# From the dynamiCXS repo root
-pip install -r dynamiCXS/requirements.txt
-pip install torch-geometric  # for Swarm example
+Create a dedicated virtual environment for this example — the dynamiCXS dependency
+pins (`torch==1.13.1`, `numpy==1.22.4`) conflict with more recent versions.
 
-# dist_pert (from repo root)
+```bash
+# From examples/coherent_scattering_example/
+python -m venv env
+source env/bin/activate                         # Windows: env\Scripts\activate
+
+# Install all pinned deps (dynamiCXS + torch-geometric + ipykernel)
+pip install -r requirements.txt
+
+# Install dist_pert with image support from the repo root
 pip install -e "../../.[image]"
+
+# torch-scatter and torch-sparse must be installed separately;
+# the wheel URL depends on your CUDA version (use +cpu for CPU-only):
+pip install torch-scatter torch-sparse \
+    -f https://data.pyg.org/whl/torch-1.13.1+cpu.html
+
+# Register as a Jupyter kernel
+python -m ipykernel install --user \
+    --name coherent_scattering_env \
+    --display-name "coherent_scattering_env"
 ```
 
-The `torch-geometric` and `torchdiffeq` packages are required by `ode.py`. See `dynamiCXS/requirements.txt` for the full pinned dependency list.
+After registering the kernel, open any notebook and select
+**coherent_scattering_env** from the kernel picker.
+
+> **Note:** `ode.py` imports `torch_geometric` at the module level, so
+> `torch-geometric` is required even if you only run the Kuramoto notebook.
+> `torch-scatter` and `torch-sparse` are build-time dependencies of
+> `torch-geometric` that cannot be resolved via PyPI alone — the `-f` flag
+> above points `pip` to the prebuilt wheels for torch 1.13.1.
