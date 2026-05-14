@@ -1,38 +1,39 @@
 # Coherent scattering example dependencies
-# Pinned versions match dynamiCXS/requirements.txt for reproducibility.
+# Updated from dynamiCXS/requirements.txt to versions with Python 3.12 wheels.
+# Original dynamiCXS pins (torch==1.13.1, numpy==1.22.4, etc.) have no 3.12
+# pre-built wheels and cannot compile from source on Python 3.12.
 #
-# Install steps (from this directory):
-#   python -m venv env
-#   source env/bin/activate
-#   pip install -r requirements.txt
-#   pip install -e ../../.[image]          # dist_pert from repo root
-#   pip install torch-scatter torch-sparse \
-#       -f https://data.pyg.org/whl/torch-1.13.1+cpu.html
+# Install steps (from the repo root):
+#   python3.12 -m venv examples/coherent_scattering_example/coherent_scattering_env
+#   source examples/coherent_scattering_example/coherent_scattering_env/bin/activate
+#   pip install -r examples/coherent_scattering_example/requirements.txt
+#   pip install -e ".[image]"
 #   python -m ipykernel install --user \
 #       --name coherent_scattering_env \
 #       --display-name "coherent_scattering_env"
-#
-# For CUDA replace +cpu with the appropriate +cuXXX tag, e.g. +cu117.
 
-# ── dynamiCXS pins ────────────────────────────────────────────────────────────
-cmcrameri==1.4
-matplotlib==3.5.2
-networkx==2.8.5
-numpy==1.22.4
-pandas==1.4.3
-scikit-image==0.19.3
-scikit-learn==1.1.2
+# ── core scientific stack ──────────────────────────────────────────────────────
+cmcrameri==1.9
+matplotlib==3.9.4
+networkx==3.4.2
+numpy==2.2.6
+pandas==2.2.3
+scikit-image==0.24.0
+scikit-learn==1.5.2
 scipy==1.13.1
-torch==1.13.1
-torchaudio>=0.12.0
-torchdiffeq==0.2.3
-torchvision==0.13.0
-tqdm==4.64.0
+tqdm==4.67.3
 
-# ── additional deps not in dynamiCXS/requirements.txt ─────────────────────────
-# torch-geometric is imported at the top of ode.py; required for all notebooks.
-# torch-scatter and torch-sparse must be installed separately (see note above).
-torch-geometric==2.2.0
+# ── PyTorch ────────────────────────────────────────────────────────────────────
+# Aligned with root env. torch-scatter/torch-sparse not required for PyG >= 2.4.
+torch==2.11.0
+torchaudio==2.11.0
+torchvision==0.26.0
+torchdiffeq==0.2.5
 
-# Jupyter kernel registration
+# ── torch-geometric ────────────────────────────────────────────────────────────
+# torch-scatter, torch-sparse, and torch-cluster must be installed separately
+# via the PyG wheel index — see install instructions in README.
+torch-geometric==2.7.0
+
+# ── Jupyter kernel ────────────────────────────────────────────────────────────
 ipykernel

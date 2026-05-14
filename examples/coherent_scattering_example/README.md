@@ -273,24 +273,25 @@ positions_perturbed = np.stack([perturber([positions[:, i]])[0] for i in range(2
 
 ## Installation
 
-Create a dedicated virtual environment for this example — the dynamiCXS dependency
-pins (`torch==1.13.1`, `numpy==1.22.4`) conflict with more recent versions.
+Create a dedicated virtual environment — the dynamiCXS dependencies require a
+separate env from the root. **Do not install into the root env.**
 
 ```bash
-# From examples/coherent_scattering_example/
-python -m venv env
-source env/bin/activate                         # Windows: env\Scripts\activate
+# From the repo root
+python3.12 -m venv examples/coherent_scattering_example/coherent_scattering_env
+source examples/coherent_scattering_example/coherent_scattering_env/bin/activate
+# Windows: examples\coherent_scattering_example\coherent_scattering_env\Scripts\activate
 
-# Install all pinned deps (dynamiCXS + torch-geometric + ipykernel)
-pip install -r requirements.txt
+# Install all example dependencies
+pip install -r examples/coherent_scattering_example/requirements.txt
 
-# Install dist_pert with image support from the repo root
-pip install -e "../../.[image]"
+# Install PyG C++ extensions (no PyPI releases — must use the wheel index)
+# Replace +cpu with +cu118, +cu121, etc. to match your CUDA version
+pip install torch-scatter torch-sparse torch-cluster \
+    -f https://data.pyg.org/whl/torch-2.11.0+cpu.html
 
-# torch-scatter and torch-sparse must be installed separately;
-# the wheel URL depends on your CUDA version (use +cpu for CPU-only):
-pip install torch-scatter torch-sparse \
-    -f https://data.pyg.org/whl/torch-1.13.1+cpu.html
+# Install dist_pert with image support
+pip install -e ".[image]"
 
 # Register as a Jupyter kernel
 python -m ipykernel install --user \
@@ -303,6 +304,7 @@ After registering the kernel, open any notebook and select
 
 > **Note:** `ode.py` imports `torch_geometric` at the module level, so
 > `torch-geometric` is required even if you only run the Kuramoto notebook.
-> `torch-scatter` and `torch-sparse` are build-time dependencies of
-> `torch-geometric` that cannot be resolved via PyPI alone — the `-f` flag
-> above points `pip` to the prebuilt wheels for torch 1.13.1.
+> `torch-scatter`, `torch-sparse`, and `torch-cluster` must be installed via the
+> PyG wheel index as they have no PyPI releases. `torch-cluster` is required by
+> the Swarm notebook (`radius_graph`).
+

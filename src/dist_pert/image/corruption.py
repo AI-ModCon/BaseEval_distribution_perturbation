@@ -138,10 +138,13 @@ class ImageCorruptionPerturber(BasePerturber[np.ndarray]):
 
             ############### imagecorruptions backend ###############
             if _IMAGECORRUPTIONS_AVAILABLE:
-                results.append(
-                    _ic_corrupt(image, corruption_name=self.corruption, severity=self.severity)
-                )
-                continue
+                try:
+                    results.append(
+                        _ic_corrupt(image, corruption_name=self.corruption, severity=self.severity)
+                    )
+                    continue
+                except Exception:
+                    pass  # fall through to PIL/numpy fallback
 
             ############### pil/numpy fallback ###############
             fn = CORRUPTION_FNS[self.corruption]

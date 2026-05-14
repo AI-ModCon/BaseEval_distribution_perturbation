@@ -14,8 +14,10 @@ git clone <repo-url>
 cd distribution_perturbation
 git submodule update --init --recursive
 
-pip install -e .            # core library (text + numeric)
-pip install -e ".[image]"   # adds image perturbers (Pillow, scipy, imagecorruptions)
+pip install -e .                    # numeric only (numpy, no heavy deps)
+pip install -e ".[text]"            # adds text perturbers (torch, transformers, nlpaug)
+pip install -e ".[image]"           # adds image perturbers (Pillow, scipy, imagecorruptions)
+pip install -e ".[text,image]"      # all modalities
 ```
 
 For the NeMo Skills example only:
