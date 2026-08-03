@@ -1,6 +1,7 @@
 """Tests for the dist-perturb CLI."""
 
 import json
+import re
 from pathlib import Path
 
 from typer.testing import CliRunner
@@ -8,6 +9,13 @@ from typer.testing import CliRunner
 from dist_pert.cli import app
 
 runner = CliRunner()
+
+_ANSI_RE = re.compile(r"\x1b\[[0-9;]*m")
+
+
+def _strip_ansi(text: str) -> str:
+    """Remove ANSI colour/style escape sequences from CLI output."""
+    return _ANSI_RE.sub("", text)
 
 
 def test_run_numeric_perturbation(tmp_path: Path) -> None:
@@ -44,9 +52,15 @@ def test_run_numeric_perturbation(tmp_path: Path) -> None:
 
 
 def test_help() -> None:
-    """The CLI exposes a help message describing its options."""
-    result = runner.invoke(app, ["--help"])
+    """The CLI exposes a help message describing its options.
+
+    The output is rendered by rich, which injects ANSI styling and wraps text to
+    the terminal width. We force a wide terminal and strip ANSI codes so the
+    option names appear as stable, unwrapped substrings across environments.
+    """
+    result = runner.invoke(app, ["--help"], env={"COLUMNS": "200", "TERM": "dumb"})
     assert result.exit_code == 0
-    assert "--input" in result.output
-    assert "--config" in result.output
-    assert "--output" in result.output
+    output = _strip_ansi(result.output)
+    assert "--input" in output
+    assert "--config" in output
+    assert "--output" in output
