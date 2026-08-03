@@ -1,12 +1,9 @@
 """Abstract base class for all dist_pert perturbers."""
 
 from abc import ABC, abstractmethod
-from typing import Generic, TypeVar
-
-T = TypeVar("T")
 
 
-class BasePerturber(ABC, Generic[T]):
+class BasePerturber[T](ABC):
     """Abstract base for all perturbation classes.
 
     Subclasses must implement perturb(). The __call__ method delegates to it

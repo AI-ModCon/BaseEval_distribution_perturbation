@@ -1,7 +1,7 @@
 """ImageNet-C style corruption perturber with optional imagecorruptions backend."""
 
 import io
-from typing import Callable
+from collections.abc import Callable
 
 import numpy as np
 
@@ -112,8 +112,7 @@ class ImageCorruptionPerturber(BasePerturber[np.ndarray]):
             raise ValueError(f"severity must be between 1 and 5, got {severity}.")
         if not _IMAGECORRUPTIONS_AVAILABLE and corruption not in CORRUPTION_FNS:
             raise ValueError(
-                f"Unknown corruption '{corruption}'. "
-                f"Available: {sorted(CORRUPTION_FNS)}."
+                f"Unknown corruption '{corruption}'. Available: {sorted(CORRUPTION_FNS)}."
             )
         self.corruption = corruption
         self.severity = severity
@@ -135,7 +134,6 @@ class ImageCorruptionPerturber(BasePerturber[np.ndarray]):
 
         results: list[np.ndarray] = []
         for image in data:
-
             ############### imagecorruptions backend ###############
             if _IMAGECORRUPTIONS_AVAILABLE:
                 try:

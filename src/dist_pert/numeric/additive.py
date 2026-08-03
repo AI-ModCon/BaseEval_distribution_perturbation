@@ -29,11 +29,12 @@ class AdditiveGaussianPerturber(BasePerturber[np.ndarray]):
             raise ValueError(f"sigma must be non-negative, got {sigma}.")
         self.sigma = sigma
 
-    def perturb(self, data: list[np.ndarray | float]) -> list[np.ndarray]:
+    def perturb(self, data: list[np.ndarray]) -> list[np.ndarray]:
         """Add Gaussian noise to each array in the batch.
 
         Args:
-            data: List of numpy arrays (any shape) or plain floats.
+            data: List of numpy arrays (any shape). Plain floats are also
+                accepted and coerced to 0-D arrays.
 
         Returns:
             List of noisy float64 numpy arrays with the same shapes as the input.

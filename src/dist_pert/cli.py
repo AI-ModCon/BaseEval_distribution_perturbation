@@ -40,6 +40,8 @@ def _build_perturber(config: dict) -> BasePerturber:
 
     ############### resolve class ###############
     import importlib
+
+    cls: type[BasePerturber] | None
     parts = perturber_type.rsplit(".", 1)
     if len(parts) == 2:
         module_path, class_name = parts
@@ -61,7 +63,8 @@ def _build_perturber(config: dict) -> BasePerturber:
         raise ValueError(f"Could not resolve perturber type '{perturber_type}'.")
 
     ############### instantiate ###############
-    return cls(**config)
+    perturber: BasePerturber = cls(**config)
+    return perturber
 
 
 @app.command()
@@ -69,7 +72,9 @@ def run(
     input: Annotated[Path, typer.Option("--input", "-i", help="Input JSONL file.")],
     config: Annotated[Path, typer.Option("--config", "-c", help="Perturbation config YAML.")],
     output: Annotated[Path, typer.Option("--output", "-o", help="Output JSONL file.")],
-    field: Annotated[str, typer.Option("--field", "-f", help="JSONL field to perturb.")] = "question",
+    field: Annotated[
+        str, typer.Option("--field", "-f", help="JSONL field to perturb.")
+    ] = "question",
 ) -> None:
     """Perturb a single field in every record of a JSONL file.
 
@@ -116,7 +121,7 @@ def run(
     ############### write output ###############
     output.parent.mkdir(parents=True, exist_ok=True)
     with output.open("w", encoding="utf-8") as f:
-        for record, perturbed in zip(records, perturbed_values):
+        for record, perturbed in zip(records, perturbed_values, strict=False):
             out_record = {**record, field: perturbed}
             f.write(json.dumps(out_record) + "\n")
 
