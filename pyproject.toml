@@ -1,7 +1,35 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
 [project]
 name = "dist-pert"
 version = "0.1.0"
+description = "First-order distribution perturbation of text, image, and numeric data"
+readme = "README.md"
 requires-python = ">=3.12"
+license = {text = "Apache-2.0"}
+authors = [
+    {name = "ModCon Base Team", email = "modcon-base-code@lbl.gov"}
+]
+keywords = [
+    "perturbation",
+    "robustness",
+    "data-augmentation",
+    "modcon",
+    "distribution-shift",
+]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
+    "Intended Audience :: Science/Research",
+    "License :: OSI Approved :: Apache Software License",
+    "Programming Language :: Python",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+]
+
 dependencies = [
     "typer>=0.9",
     "pyyaml>=6.0",
@@ -16,9 +44,54 @@ numeric = []
 [project.scripts]
 dist-perturb = "dist_pert.cli:app"
 
-[build-system]
-requires = ["setuptools>=68"]
-build-backend = "setuptools.build_meta"
+[project.urls]
+Repository = "https://github.com/AI-ModCon/distribution_perturbation"
+Documentation = "https://github.com/AI-ModCon/distribution_perturbation"
+"Issue Tracker" = "https://github.com/AI-ModCon/distribution_perturbation/issues"
 
 [tool.setuptools.packages.find]
 where = ["src"]
+
+[dependency-groups]
+dev = [
+    "ruff>=0.1.0",
+    "mypy>=1.0",
+]
+test = [
+    "pytest>=7.0",
+    "pytest-cov>=4.0",
+]
+
+[tool.ruff]
+line-length = 100
+exclude = [
+    ".git",
+    ".github",
+    "__pycache__",
+    ".mypy_cache",
+    ".ruff_cache",
+    "dist",
+    ".venv",
+    "examples",
+    "notebooks",
+    "weather_example_test",
+]
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B", "W"]
+ignore = []
+
+[tool.mypy]
+python_version = "3.12"
+warn_return_any = true
+warn_unused_configs = true
+disallow_untyped_defs = false
+ignore_missing_imports = true
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py", "*_test.py"]
+addopts = "--cov=dist_pert --cov-report=term-missing"
+markers = [
+    "slow: marks tests that download models or are otherwise slow to run",
+]

@@ -43,11 +43,12 @@ class MultiplicativeNoisePerturber(BasePerturber[np.ndarray]):
         self.scale = scale
         self.distribution = distribution
 
-    def perturb(self, data: list[np.ndarray | float]) -> list[np.ndarray]:
+    def perturb(self, data: list[np.ndarray]) -> list[np.ndarray]:
         """Multiply each array by per-element random factors.
 
         Args:
-            data: List of numpy arrays (any shape) or plain floats.
+            data: List of numpy arrays (any shape). Plain floats are also
+                accepted and coerced to 0-D arrays.
 
         Returns:
             List of scaled float64 numpy arrays with the same shapes as the input.

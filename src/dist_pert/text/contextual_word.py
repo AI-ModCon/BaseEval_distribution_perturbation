@@ -7,7 +7,7 @@ from dist_pert.base import BasePerturber
 
 # Monkey-patch for transformer version compatibility (missing _convert_token_to_id).
 if not hasattr(BertTokenizer, "_convert_token_to_id"):
-    BertTokenizer._convert_token_to_id = BertTokenizer.convert_tokens_to_ids
+    BertTokenizer._convert_token_to_id = BertTokenizer.convert_tokens_to_ids  # type: ignore[attr-defined]
 
 
 class ContextualWordPerturber(BasePerturber[str]):
@@ -88,4 +88,5 @@ class ContextualWordPerturber(BasePerturber[str]):
         if not texts:
             raise ValueError("texts must be non-empty.")
 
-        return self._aug.augment(texts)
+        result: list[str] = self._aug.augment(texts)
+        return result
