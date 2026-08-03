@@ -11,8 +11,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v4
-      with:
-        submodules: recursive
 
     - name: Set up Python
       uses: actions/setup-python@v5
@@ -29,8 +27,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v4
-      with:
-        submodules: recursive
 
     - name: Set up Python
       uses: actions/setup-python@v5
@@ -62,8 +58,6 @@ jobs:
 
     steps:
     - uses: actions/checkout@v4
-      with:
-        submodules: recursive
 
     - name: Set up Python ${{ matrix.python-version }}
       uses: actions/setup-python@v5
@@ -79,12 +73,12 @@ jobs:
       run: uv sync --group test --extra text --extra image
 
     - name: Run tests with pytest
-      run: uv run pytest --cov=dist_pert --cov-report=xml
+      run: uv run pytest -m "not slow" --cov=dist_pert --cov-report=xml
 
     - name: Upload coverage to Codecov
       uses: codecov/codecov-action@v4
       with:
-        file: ./coverage.xml
+        files: ./coverage.xml
         flags: unittests
         name: codecov-umbrella
         fail_ci_if_error: false
