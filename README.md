@@ -155,7 +155,7 @@ Please note that this project is released with a [Contributor Code of Conduct](.
 
 ## Support
 
-This project acknowledges support from the U.S. Department of Energy's Genesis Mission.
+This project acknowledges support from the U.S. Department of Energy (DOE), Office of Science, Office of Advanced Scientific Computing Research in alignment with DOE's Genesis Mission.
 
 ## License
 
