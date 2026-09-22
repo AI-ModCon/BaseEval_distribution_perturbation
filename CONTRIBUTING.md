@@ -42,7 +42,7 @@ Enhancement suggestions are tracked as GitHub issues. When creating an enhanceme
 ## Development Setup
 
 1. Fork the repository
-2. Clone your fork: `git clone https://github.com/AI-ModCon/distribution_perturbation.git`
+2. Clone your fork: `git clone https://github.com/AI-ModCon/BaseEval_distribution_perturbation.git`
 3. Initialise submodules: `git submodule update --init --recursive`
 4. Create a new branch: `git checkout -b feature/my-feature`
 5. Set up the development environment (installs dev, test, and modality extras):

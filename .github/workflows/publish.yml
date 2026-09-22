@@ -1,10 +1,10 @@
 name: Publish
 
 on:
-  # Uncomment to publish on version tags
-  # push:
-  #   tags:
-  #     - "v*"
+  workflow_dispatch:
+  push:
+    tags:
+      - "v*"
 
 jobs:
   build-publish:

@@ -95,12 +95,12 @@ Yes, the Apache 2.0 license permits commercial use.
 ### Where can I report bugs?
 
 Please open an issue on
-[GitHub](https://github.com/AI-ModCon/distribution_perturbation/issues).
+[GitHub](https://github.com/AI-ModCon/BaseEval_distribution_perturbation/issues).
 
 ### How do I suggest new features?
 
 Open a feature request on
-[GitHub](https://github.com/AI-ModCon/distribution_perturbation/issues/new?template=feature_request.md).
+[GitHub](https://github.com/AI-ModCon/BaseEval_distribution_perturbation/issues/new?template=feature_request.md).
 
 ## Troubleshooting
 
