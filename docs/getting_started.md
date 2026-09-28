@@ -15,8 +15,8 @@ numeric data.
 ### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/AI-ModCon/distribution_perturbation.git
-cd distribution_perturbation
+git clone https://github.com/AI-ModCon/BaseEval_distribution_perturbation.git
+cd BaseEval_distribution_perturbation
 git submodule update --init --recursive
 ```
 

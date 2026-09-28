@@ -12,8 +12,8 @@ A library for **first-order distribution perturbation** of text, image, and nume
 This project uses [uv](https://docs.astral.sh/uv/) for dependency management.
 
 ```bash
-git clone https://github.com/AI-ModCon/distribution_perturbation.git
-cd distribution_perturbation
+git clone https://github.com/AI-ModCon/BaseEval_distribution_perturbation.git
+cd BaseEval_distribution_perturbation
 git submodule update --init --recursive
 
 uv sync                                # numeric only (numpy, no heavy deps)
@@ -22,9 +22,13 @@ uv sync --extra image                  # adds image perturbers (Pillow, scipy, i
 uv sync --extra text --extra image     # all modalities
 ```
 
-For the NeMo Skills example only:
+For the NeMo Skills example only, install the upstream `perlmutter_nemo-skills-main`
+repository from its own checkout first:
 ```bash
-uv pip install -e /path/to/perlmutter_nemo-skills-main
+# In your local checkout of the upstream perlmutter_nemo-skills-main repo
+uv pip install -e .
+
+# Then return to this repository
 uv pip install -e examples/perlmutter_nemo_skills/nemo-custom-benchmark
 ```
 
@@ -87,7 +91,12 @@ model_path: google-bert/bert-base-cased
 model_type: bert
 ```
 
-## Second-Order Example: TBD
+## Second-Order Example
+
+Second-order perturbations change the generation process rather than the final
+sample. For a full worked example, see the [coherent scattering example](./examples/coherent_scattering_example/README.md),
+which perturbs upstream parameters and inputs before generating diffraction
+patterns.
 
 ## Development Setup
 
@@ -133,6 +142,7 @@ Image and text tests skip gracefully when the corresponding extras are not insta
 See the [docs](./docs) directory:
 
 - [Getting Started](./docs/getting_started.md)
+- [API Reference](./docs/api_reference.md)
 - [FAQ](./docs/faq.md)
 
 ## Contributing
@@ -145,7 +155,7 @@ Please note that this project is released with a [Contributor Code of Conduct](.
 
 ## Support
 
-This project acknowledges support from the U.S. Department of Energy's Genesis Mission.
+This project acknowledges support from the U.S. Department of Energy (DOE), Office of Science, Office of Advanced Scientific Computing Research in alignment with DOE's Genesis Mission.
 
 ## License
 
@@ -153,4 +163,4 @@ This project is licensed under the Apache License 2.0 - see the [LICENSE](./LICE
 
 ## Questions or Issues?
 
-For questions or to report issues, please open an issue on [GitHub](https://github.com/AI-ModCon/distribution_perturbation/issues).
+For questions or to report issues, please open an issue on [GitHub](https://github.com/AI-ModCon/BaseEval_distribution_perturbation/issues).

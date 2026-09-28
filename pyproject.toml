@@ -8,7 +8,7 @@ version = "0.1.0"
 description = "First-order distribution perturbation of text, image, and numeric data"
 readme = "README.md"
 requires-python = ">=3.12"
-license = {text = "Apache-2.0"}
+license = "Apache-2.0"
 authors = [
     {name = "ModCon Base Team", email = "modcon-base-code@lbl.gov"}
 ]
@@ -23,7 +23,6 @@ classifiers = [
     "Development Status :: 3 - Alpha",
     "Intended Audience :: Developers",
     "Intended Audience :: Science/Research",
-    "License :: OSI Approved :: Apache Software License",
     "Programming Language :: Python",
     "Programming Language :: Python :: 3",
     "Programming Language :: Python :: 3.12",
@@ -45,9 +44,9 @@ numeric = []
 dist-perturb = "dist_pert.cli:app"
 
 [project.urls]
-Repository = "https://github.com/AI-ModCon/distribution_perturbation"
-Documentation = "https://github.com/AI-ModCon/distribution_perturbation"
-"Issue Tracker" = "https://github.com/AI-ModCon/distribution_perturbation/issues"
+Repository = "https://github.com/AI-ModCon/BaseEval_distribution_perturbation"
+Documentation = "https://github.com/AI-ModCon/BaseEval_distribution_perturbation"
+"Issue Tracker" = "https://github.com/AI-ModCon/BaseEval_distribution_perturbation/issues"
 
 [tool.setuptools.packages.find]
 where = ["src"]

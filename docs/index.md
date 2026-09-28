@@ -5,6 +5,7 @@ Welcome to the distribution_perturbation documentation!
 ## Main Documentation Files
 
 - [Getting Started](./getting_started.md) - Setup and installation guide
+- [API Reference](./api_reference.md) - Public classes, functions, and CLI entry points
 - [FAQ](./faq.md) - Frequently asked questions
 
 ## Project Resources
@@ -17,11 +18,11 @@ Welcome to the distribution_perturbation documentation!
 
 ## Quick Links
 
-- [GitHub Repository](https://github.com/AI-ModCon/distribution_perturbation)
-- [Issue Tracker](https://github.com/AI-ModCon/distribution_perturbation/issues)
+- [GitHub Repository](https://github.com/AI-ModCon/BaseEval_distribution_perturbation)
+- [Issue Tracker](https://github.com/AI-ModCon/BaseEval_distribution_perturbation/issues)
 
 ## Getting Help
 
 - Check the [FAQ](./faq.md)
-- Search existing [GitHub Issues](https://github.com/AI-ModCon/distribution_perturbation/issues)
-- Open a new [GitHub Issue](https://github.com/AI-ModCon/distribution_perturbation/issues/new)
+- Search existing [GitHub Issues](https://github.com/AI-ModCon/BaseEval_distribution_perturbation/issues)
+- Open a new [GitHub Issue](https://github.com/AI-ModCon/BaseEval_distribution_perturbation/issues/new)
