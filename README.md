@@ -115,6 +115,7 @@ make test-cov        # run tests with coverage
 make lint            # ruff check
 make format          # ruff format
 make type-check      # mypy on src/dist_pert
+uv build             # build source and wheel distributions
 ```
 
 This project uses:
